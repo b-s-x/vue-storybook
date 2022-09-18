@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import { ref, onMounted, computed } from 'vue'
   import ChevronIcon from '@/icons/Chevron.vue';
+  import { useSlider } from './useSlider';
 
   const props = defineProps({
     startAutoPlay: {
@@ -25,52 +25,20 @@
     },
   })
 
-  const currentSlide = ref(1);
-  const slideCount = ref<number | null>(null);
-  const autoPlayEnabled = ref<boolean>(props.startAutoPlay);
-  const timeoutDuration = ref<number | undefined>(Number(props.timeout));
-  const paginationEnabled = ref<boolean>(props.pagination)
-  const navigationEnabled = ref<boolean>(props.navigation)
-  let intervalId = timeoutDuration.value;
-
-  const nextSlide = () => {
-    resetInterval();
-    if (currentSlide.value === slideCount.value) {
-      currentSlide.value = 1;
-      return;
-    }
-    currentSlide.value += 1;
-  }
-  const prevSlide = () => {
-    resetInterval();
-    if (currentSlide.value === 1) {
-       currentSlide.value = 1;
-       return;
-    }
-    currentSlide.value -= 1;
-  }
-
-  const goToSlide = (index: number) => {
-    resetInterval();
-    currentSlide.value = index + 1;
-  }
-  const autoPlay = () => {
-    intervalId = setInterval(() => nextSlide(), timeoutDuration.value)
-  }
-  const resetInterval = () => {
-    clearInterval(intervalId);
-    autoPlayEnabled.value && autoPlay()
-  }
-
-  const getSlideCount = () => {
-    slideCount.value = document.querySelectorAll('.slide').length;
-  }
-
-  autoPlayEnabled.value && autoPlay();
-
-  onMounted(() => {
-    getSlideCount();
-  });
+  const {
+    currentSlide,
+    slideCount,
+    paginationEnabled,
+    navigationEnabled,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+  } = useSlider({
+    startAutoPlay: props.startAutoPlay,
+    timeout: Number(props.timeout),
+    pagination: props.pagination,
+    navigation: props.navigation,
+  })
 
 </script>
 
