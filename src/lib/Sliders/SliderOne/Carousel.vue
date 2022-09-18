@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, computed } from 'vue'
   import ChevronIcon from '@/icons/Chevron.vue';
 
   const props = defineProps({
@@ -19,10 +19,14 @@
       type: Boolean,
       default: true,
     },
+    colorIcon: {
+      type: String,
+      default: 'white',
+    },
   })
 
   const currentSlide = ref(1);
-  const getSlideCount = ref<number | null>(null);
+  const slideCount = ref<number | null>(null);
   const autoPlayEnabled = ref<boolean>(props.startAutoPlay);
   const timeoutDuration = ref<number | undefined>(Number(props.timeout));
   const paginationEnabled = ref<boolean>(props.pagination)
@@ -31,7 +35,7 @@
 
   const nextSlide = () => {
     resetInterval();
-    if (currentSlide.value === getSlideCount.value) {
+    if (currentSlide.value === slideCount.value) {
       currentSlide.value = 1;
       return;
     }
@@ -58,9 +62,16 @@
     autoPlayEnabled.value && autoPlay()
   }
 
+  const getSlideCount = () => {
+    slideCount.value = document.querySelectorAll('.slide').length;
+  }
+
   autoPlayEnabled.value && autoPlay();
 
-  onMounted(() => getSlideCount.value = document.querySelectorAll('.slide').length);
+  onMounted(() => {
+    getSlideCount();
+  });
+
 </script>
 
 <template>
@@ -73,13 +84,13 @@
     >
       <button class="button button_left">
         <ChevronIcon
-          class="icon"
+          :style="{ fill: colorIcon }"
           @click="prevSlide"
         />
       </button>
-      <button class="button">
+      <button class="button button_right">
         <ChevronIcon
-          class="icon"
+          :style="{ fill: colorIcon }"
           @click="nextSlide"
         />
       </button>
@@ -90,7 +101,7 @@
       v-if="paginationEnabled"
     >
       <span
-        v-for="(slide, index) of getSlideCount"
+        v-for="(_, index) of slideCount"
         :key="index"
         :class="{active: index + 1 === currentSlide }"
         @click="goToSlide(index)"
@@ -108,12 +119,11 @@ $shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
 .navigate {
   padding: 0 16px;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  top: 47%;
 }
 
 .pagination {
