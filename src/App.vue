@@ -4,8 +4,8 @@
       class="carousel"
       navigation
       pagination
-      startAutoPlay
       timeout="3000"
+      startAutoPlay
       v-slot="{ currentSlide }"
     >
       <Slide
@@ -17,8 +17,9 @@
           v-show="currentSlide === id"
         >
           <img
+            class="slide_img"
             :src="`./images/${name}.${extension}`"
-            alt="slide"
+            :alt="`slide-${name}`"
           >
         </div>
       </Slide>
@@ -33,24 +34,30 @@ import { carouselSlides } from './lib/Sliders/SliderOne/mock.js';
 </script>
 
 <style lang="scss" scoped>
+
+.home {
+  height: 300px;
+  width: 500px;
+}
+
 .carousel {
   position: relative;
-  max-height: 100vh;
-  height: 100vh;
+  max-height: 100%;
+  height: 100%;
+}
 
-  .slide_info {
+.slide {
+  &_info {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    max-height: 100%;
     height: 100%;
+  }
 
-    img {
-      min-width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  &_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
+
 </style>
