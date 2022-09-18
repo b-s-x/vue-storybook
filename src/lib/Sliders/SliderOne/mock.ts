@@ -1,4 +1,4 @@
-export const carouselSlides = [
+export const carouselSlides: any = [
   {
     id: 1,
     name: 'img-1',
