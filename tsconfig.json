@@ -1,28 +1,22 @@
 {
   "compilerOptions": {
-    "removeComments": true,
-    "forceConsistentCasingInFileNames": true,
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "strict": true,
-    "strictBindCallApply": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "isolatedModules": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDisableTemplateSupport": false,
     "jsx": "preserve",
-    "resolveJsonModule": true,
     "sourceMap": true,
-    "baseUrl": "./",
-    "types": ["vite/client"],
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true
   },
-  "include": ["vite.config.*", "src/**/*", "src/**/*.vue"],
-  "exclude": ["node_modules", "**/*.stories.ts"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules"],
+  "baseUrl": "./",
+  "paths": {
+    "@/*": ["src/*"]
+  },
 }
