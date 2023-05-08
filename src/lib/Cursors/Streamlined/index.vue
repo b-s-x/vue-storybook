@@ -108,7 +108,7 @@ const handleCursorMove = (event: MouseEvent) => cursor.value.updateCursor(event)
 		right: 0;
 		bottom: 0;
 		border-radius: var(--radius);
-		border: 2px solid hsl(160, 55, 45);
+		border: 2px solid hsl(283, 76%, 37%);
 		opacity: var(--scale);
 		transform: scale(var(--scale));
 		transition:
