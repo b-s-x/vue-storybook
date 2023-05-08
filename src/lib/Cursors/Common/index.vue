@@ -6,7 +6,7 @@ new Cursor();
 </script>
 
 <template>
-  <div id="cursor"/>
+  <div id="cursor" />
 </template>
 
 <style lang="scss">

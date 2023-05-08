@@ -50,5 +50,3 @@ export class Cursor {
     this.raf = requestAnimationFrame(this.render);
   }
 }
-
-// new Cursor();
