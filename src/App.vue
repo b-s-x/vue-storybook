@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <ButtonUnderlineHover @click="handleClick">
+    <ButtonHover @click="handleClick">
       Hover this text
-    </ButtonUnderlineHover>
+    </ButtonHover>
   </div>
 </template>
 
 <script setup lang="ts">
-import ButtonUnderlineHover from '@/lib/Buttons/ButtonUnderlineHover.vue';
+import ButtonHover from '@/lib/Buttons/ButtonHover.vue';
 
 const handleClick = () => console.log(11111);
 
