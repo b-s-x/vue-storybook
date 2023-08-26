@@ -1,13 +1,13 @@
 <template>
   <div class="home">
-    <ButtonHover @click="handleClick">
+    <ButtonRipple @click="handleClick">
       Hover this text
-    </ButtonHover>
+    </ButtonRipple>
   </div>
 </template>
 
 <script setup lang="ts">
-import ButtonHover from '@/lib/Buttons/ButtonHover.vue';
+import ButtonRipple from '@/lib/Buttons/ButtonRipple.vue';
 
 const handleClick = () => console.log(11111);
 
